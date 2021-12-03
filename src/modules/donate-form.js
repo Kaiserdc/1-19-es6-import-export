@@ -1,3 +1,5 @@
+import {Settings as setts} from '../core/constants/settings'
+
 export default class DonateForm {
     #form
     #donateTotalAmount
@@ -26,7 +28,7 @@ export default class DonateForm {
     }
 
     updateTotalAmount(newAmount) {
-        return this.#donateTotalAmount.innerHTML = `${newAmount}$`
+        return this.#donateTotalAmount.innerHTML = `${newAmount}${setts.currency}`
     }
 
     render() {
@@ -47,7 +49,7 @@ export default class DonateForm {
 
         // Label Proprites
         this.#donateFormInputLabel.className = 'donate-form__input-label'
-        this.#donateFormInputLabel.innerText = 'Введите сумму в $'
+        this.#donateFormInputLabel.innerText = `Введите сумму в ${setts.currency}`
         this.#donateFormInputLabel.append(this.#donateFormInput)
 
         // Button Proprites

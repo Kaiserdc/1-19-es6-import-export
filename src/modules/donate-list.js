@@ -1,3 +1,5 @@
+import {Settings} from '../core/constants/settings'
+
 export default class DonateList {
     #donatesArray
     #donateListContainer
@@ -16,7 +18,7 @@ export default class DonateList {
     }
 
     #createDonateItemList(array, selector) {
-        array.map(item => selector.innerHTML += `<div class="donate-item">${item.date} - <b>${item.amount}</b></div>`)
+        array.map(item => selector.innerHTML += `<div class="donate-item">${item.date} - <b>${item.amount}${Settings.currency}</b></div>`)
     }
 
     updateDonates(updatedDonates) {
