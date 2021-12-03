@@ -1,13 +1,13 @@
 export default class DonateForm {
+    #form
     constructor() {
+        this.#form = document.createElement('form')
+            this.#form.classList.add('donate-form')
     }
-
     render() {
-        const donateForm = document.createElement('form')
-        donateForm.classList.add('donate-form')
         const donateTotalAmount = document.createElement('h1')
-        donateForm.setAttribute('id', 'total-amount')
-        donateTotalAmount.innerText = '28$'
+            donateTotalAmount.setAttribute('id', 'total-amount')
+            donateTotalAmount.innerText = '28$'
         const donateFormInputLabel = document.createElement('label')
             donateFormInputLabel.classList.add('donate-form__input-label')
             donateFormInputLabel.innerText = 'Введите сумму в $'
@@ -24,8 +24,9 @@ export default class DonateForm {
             donateFormButton.innerText = 'Задонатить'
 
         donateFormInputLabel.append(donateFormInput)
-        donateForm.append(donateTotalAmount, donateFormInputLabel, donateFormButton)
 
-        return  donateForm
+        this.#form.append(donateTotalAmount, donateFormInputLabel, donateFormButton)
+
+        return this.#form
     }
 }
