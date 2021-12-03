@@ -1,25 +1,33 @@
 export default class DonateList {
     #donatesArray
     #donateListContainer
+    #donateListTitle
+    #donateListItems
+
     constructor(array) {
         this.#donateListContainer = document.createElement('div')
         this.#donateListContainer.classList.add('donates-container')
+        this.#donateListTitle = document.createElement('div')
+        this.#donateListTitle.classList.add('donates-container__title')
+        this.#donateListItems = document.createElement('div')
+        this.#donateListItems.classList.add('donates-container__donates')
+
         this.#donatesArray = array
     }
-    #createDonateItem(item){
-        return `<div class="donate-item">${item.date} - <b>${item.amount}</b></div>`
+
+    #createDonateItemList(array, selector) {
+        array.map(item => selector.innerHTML += `<div class="donate-item">${item.date} - <b>${item.amount}</b></div>`)
     }
+
+    updateDonates(updatedDonates) {
+        this.#donateListItems.innerHTML = ''
+        this.#createDonateItemList(updatedDonates, this.#donateListItems)
+    }
+
     render() {
-        const donateListTitle = document.createElement('div')
-        donateListTitle.classList.add('donates-container__title')
-        donateListTitle.innerText ='Список донатов'
-        const donateListItems = document.createElement('div')
-            donateListItems.classList.add('donates-container__donates')
-            this.#donatesArray.map( item => {
-                console.log(this.#createDonateItem(item))
-                donateListItems.innerHTML += this.#createDonateItem(item)
-            } )
-        this.#donateListContainer.append(donateListTitle, donateListItems)
+        this.#donateListTitle.innerText = 'Список донатов'
+        this.#createDonateItemList(this.#donatesArray, this.#donateListItems)
+        this.#donateListContainer.append(this.#donateListTitle, this.#donateListItems)
         return this.#donateListContainer
     }
 
