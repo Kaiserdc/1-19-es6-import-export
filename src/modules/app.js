@@ -1,6 +1,7 @@
+import * as utils from '../core/utils/index'
 import DonateForm from "./donate-form"
 import DonateList from "./donate-list";
-import {Settings} from '../core/constants/settings'
+
 
 const mockDonates = [
     {amount: 4, date: new Date()},

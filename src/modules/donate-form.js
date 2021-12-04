@@ -1,4 +1,5 @@
 import {Settings as setts} from '../core/constants/settings'
+import * as utils from '../core/utils/index'
 
 export default class DonateForm {
     #form
@@ -20,7 +21,7 @@ export default class DonateForm {
             event.preventDefault()
             if (this.#donateFormInput.value && this.#donateFormInput.value > 0) {
                 let amount = this.#donateFormInput.value
-                let date = new Date()
+                let date = utils.getFormattedTime(new Date())
                 this.createNewDonate(amount, date)
                 this.#donateFormInput.value = ''
             }

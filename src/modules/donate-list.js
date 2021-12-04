@@ -1,4 +1,5 @@
 import {Settings} from '../core/constants/settings'
+import * as utils from '../core/utils/index'
 
 export default class DonateList {
     #donatesArray
@@ -18,7 +19,7 @@ export default class DonateList {
     }
 
     #createDonateItemList(array, selector) {
-        array.map(item => selector.innerHTML += `<div class="donate-item">${item.date} - <b>${item.amount}${Settings.currency}</b></div>`)
+        array.map(item => selector.innerHTML += `<div class="donate-item">${utils.getFormattedTime(new Date(item.date))} - <b>${item.amount}${Settings.currency}</b></div>`)
     }
 
     updateDonates(updatedDonates) {
@@ -30,6 +31,7 @@ export default class DonateList {
         this.#donateListTitle.innerText = 'Список донатов'
         this.#createDonateItemList(this.#donatesArray, this.#donateListItems)
         this.#donateListContainer.append(this.#donateListTitle, this.#donateListItems)
+
         return this.#donateListContainer
     }
 
